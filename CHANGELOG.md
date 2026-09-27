@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1 — Read-state fixes
+
+- Fix the stove-state text sensor being rejected by Home Assistant as numeric.
+- Recognize hyphenated HSP family names such as HSP-6, enabling the reported-error
+  description sensor without changing existing device or entity identities.
+- Include the public HSP-6 model label in sanitized diagnostics.
+- Add regressions for text-state updates and model spelling variants.
+- Document initial read-only hardware observations; physical commands remain untested.
+
 ## 0.1.0 — Initial development release
 
 - Local asynchronous KS01/status.cgi client with explicit firmware capabilities.

@@ -108,7 +108,7 @@ def decode(body: bytes, *, record_unknown: bool = False) -> StoveState:
         serial.lower() in {"unknown", "none", "n/a"} or set(serial) <= {"0", "-", " "}
     ):
         serial = None
-    match = re.search(r"\bHSP\s*([0-9]+)\b", model, re.IGNORECASE)
+    match = re.search(r"\bHSP[\s-]*([0-9]+)\b", model, re.IGNORECASE)
     manufacturer = "Hark" if "ecomat" in model.lower() else "HAAS+SOHN"
     info = DeviceInfo(
         manufacturer,

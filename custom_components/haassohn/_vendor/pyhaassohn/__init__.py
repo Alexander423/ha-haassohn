@@ -5,4 +5,4 @@ from .client import HaasSohnClient
 from .models import DeviceInfo, StoveState
 
 __all__ = ["FIELDS", "Capabilities", "Confidence", "DeviceInfo", "HaasSohnClient", "StoveState"]
-__version__ = "0.1.0"
+__version__ = "0.1.1"

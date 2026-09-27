@@ -33,6 +33,17 @@ def decoded(data=None, **kwargs):
     return decode(json.dumps(data if data is not None else profile()).encode(), **kwargs)
 
 
+@pytest.mark.parametrize("model", ["HSP-6", "HSP 6", "HSP6", "hsp-6", "HSP 6 PALLAZZA III"])
+def test_hsp_family_model_spellings(model):
+    data = profile()
+    data["meta"]["typ"] = model
+    state = decoded(data)
+    assert state.info.family == "HSP 6"
+    assert state.info.model == model
+    assert state.info.unique_id == decoded().info.unique_id
+    assert state.capabilities == decoded().capabilities
+
+
 @pytest.mark.parametrize("name", PROFILES)
 def test_profiles(name):
     state = decoded(profile(name))
@@ -361,6 +372,10 @@ async def test_diagnostics_redaction(stove_server):
         emulator.data["meta"]["sw_version"] = "private firmware"
         await client.get_state()
         assert export_diagnostics(client)["device"]["firmware"] == "[redacted]"
+        emulator.data["meta"]["typ"] = "HSP-6"
+        await client.get_state()
+        assert export_diagnostics(client)["device"]["model"] == "HSP-6"
+        assert export_diagnostics(client)["device"]["family"] == "HSP 6"
         emulator.data["meta"]["typ"] = "private model"
         emulator.data["meta"].pop("wifi_sw_version")
         await client.get_state()

@@ -3,8 +3,11 @@
 All rows below use legacy JSON over HTTP. IO identifies KS01 with the firmware
 allowlist; model names are user reports, not unique firmware fingerprints. Serial
 and raw `meta.typ` are used for identification, not a guessed model from firmware.
-All local fixtures are **synthetic**. No physical stove has been tested by this
-project, including the user's WLAN APP V1.2.5 stove.
+All local fixtures are **synthetic**. On 2026-09-28, read-only status retrieval
+was observed on a physical device reporting `HSP-6`, KS01, V5.10 and WLAN V1.2.5.
+Values were compared with HA recorder data; accuracy against the stove display
+and all physical control operations remain unverified. No raw captures or
+private device identifiers are included in this repository.
 
 Read set R: available valid fields listed in [protocol.md](protocol.md), not a claim
 that every model supplies every field. Write set W: power and integer 10–30 °C

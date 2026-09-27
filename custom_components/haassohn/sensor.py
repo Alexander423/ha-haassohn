@@ -44,7 +44,8 @@ class HaasSohnSensor(HaasSohnEntity, SensorEntity):
             self._attr_state_class = SensorStateClass.TOTAL_INCREASING
         elif definition.unit == "°C":
             self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_suggested_display_precision = 1 if definition.unit in {"°C", "h"} else 0
+        if definition.kind == "number":
+            self._attr_suggested_display_precision = 1 if definition.unit in {"°C", "h"} else 0
         if definition.diagnostic:
             self._attr_entity_category = EntityCategory.DIAGNOSTIC
         if key in {"zone", "ht_char", "tvl_temp"}:
