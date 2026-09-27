@@ -11,8 +11,8 @@ is direct over the local network. No MQTT, Node.js, bridge, Supervisor, add-on o
 cloud account is required; Home Assistant Container is supported.
 
 **Development release.** Protocol evidence comes from independently reviewed
-implementations and manuals. Tests use synthetic emulators; this project has not
-yet been validated on physical hardware. It is not an official HAAS+SOHN or Home
+implementations and manuals. Automated tests use synthetic emulators. Read-only status retrieval has also been
+observed on HSP-6 / KS01 V5.10 / WLAN V1.2.5; hardware control remains untested. It is not an official HAAS+SOHN or Home
 Assistant Core integration. See [compatibility](docs/compatibility.md) for precise
 model/firmware reports and [research](docs/research.md) for source revisions.
 
@@ -38,7 +38,7 @@ Use Home Assistant 2026.9 or newer. Copy the complete
 configuration directory's `custom_components` folder and restart HA. The bundled
 library is generated from the independent package; no PyPI publication is needed.
 For an archive, run `python scripts/package_integration.py` and extract
-`dist/haassohn-0.1.0.zip` into the configuration directory.
+`dist/haassohn-0.1.1.zip` into the configuration directory.
 
 Go to **Settings → Devices & services → Add integration → HAAS+SOHN**. Enter the
 local host/IP without URL scheme or port and the four-digit APP PIN shown by the

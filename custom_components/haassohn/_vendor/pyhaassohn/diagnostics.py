@@ -15,6 +15,7 @@ _SENSITIVE = re.compile(
 # Exact public model labels only; arbitrary metadata strings are not safe exports.
 _PUBLIC_MODELS = frozenset(
     {
+        "HSP-6",
         "HSP 2.17 PREMIUM",
         "HSP 2.17 PREMIUM III",
         "HSP 6 PALLAZZA III",

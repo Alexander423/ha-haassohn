@@ -25,6 +25,36 @@ async def setup(hass, entry):
     await hass.async_block_till_done()
 
 
+async def test_hyphenated_model_and_text_state(hass, entry, mock_client, caplog):
+    """Real HA must publish string modes and the HSP-6 error description on reads."""
+    data = profile()
+    data["meta"]["typ"] = "HSP-6"
+    data["meta"]["sw_version"] = "V5.10"
+    data["meta"].pop("eco_editable", None)
+    data["error"] = []
+    mock_client.get_state.return_value = decode(json.dumps(data).encode())
+    await setup(hass, entry)
+    entities = er.async_entries_for_config_entry(er.async_get(hass), entry.entry_id)
+    mode_entity = next(
+        e for e in entities if e.unique_id.endswith("_mode") and e.domain == "sensor"
+    )
+    error_entity = next(e for e in entities if e.unique_id.endswith("_error_description"))
+    assert hass.states.get(mode_entity.entity_id).state == "off"
+    assert hass.states.get(error_entity.entity_id).state == "no_entries"
+    for mode in ("start", "heating", "cooling", "vendor_specific", "off"):
+        data["mode"] = mode
+        entry.runtime_data.async_set_updated_data(decode(json.dumps(data).encode()))
+        await hass.async_block_till_done()
+        assert hass.states.get(mode_entity.entity_id).state == mode
+    data["error"] = [{"nr": 18}]
+    entry.runtime_data.async_set_updated_data(decode(json.dumps(data).encode()))
+    await hass.async_block_till_done()
+    assert hass.states.get(error_entity.entity_id).state == "power_interruption"
+    assert "Unexpected error updating listener" not in caplog.text
+    for command in ("set_power", "set_target_temperature", "set_eco_mode", "set_week_program"):
+        getattr(mock_client, command).assert_not_awaited()
+
+
 async def test_setup_entities_and_services(hass, entry, mock_client, snapshot):
     await setup(hass, entry)
     entities = er.async_entries_for_config_entry(er.async_get(hass), entry.entry_id)
