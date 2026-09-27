@@ -25,7 +25,7 @@ jobs:
       - run: pytest tests/test_library.py tests/test_transport.py tests/test_metadata.py --cov=pyhaassohn --cov-report=xml
       - run: python -m build
       - run: python scripts/package_integration.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: packages-${{ matrix.python }}
           path: dist/*
@@ -40,7 +40,7 @@ jobs:
       - run: python -m pip install -e '.[test,dev]' -r requirements-ha-test.txt
       - run: mypy --python-version 3.14 --follow-imports silent --exclude _vendor custom_components/haassohn
       - run: pytest tests/integration --cov=custom_components.haassohn --cov-report=xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: ha-coverage
