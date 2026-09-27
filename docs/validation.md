@@ -33,8 +33,10 @@ The emulator is synthetic, not a physical reference implementation.
 * No physical appliance has been tested. WLAN APP V1.2.5 compatibility remains
   unverified. Establish controller firmware and read response shape first.
 * Repository metadata points to `Alexander423/ha-haassohn`.
-* HACS action is configured in CI; repository-dependent remote validation has not
-  run. No HACS listing, PyPI publication or Core submission occurred.
+* GitHub HACS validation passed for this custom repository (the brands check is
+  intentionally excluded because no Home Assistant Brands submission exists).
+  No HACS default-store listing, PyPI publication or Core submission occurred.
+  Current remote results are available in the repository Actions tab.
 * The researched protocol provides no proven non-mutating initial PIN check.
   Setup makes no write solely to validate a PIN; the UI explains this limitation.
 * Schedule editing, actuator/fan adjustment, cleaning/service resets, measured
