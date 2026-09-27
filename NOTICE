@@ -1,0 +1,8 @@
+HAAS+SOHN and Hark are trademarks of their respective owners.
+This project is independent and unaffiliated.
+
+Protocol research acknowledges marvingrieger/ioBroker.haassohn (MIT), the
+openHAB Haas+Sohn binding contributors (EPL-2.0), dwyschka/hsp-mqtt-bridge,
+shaarkys/com.haassohn.pellets and HAAS+SOHN's user documentation.
+See docs/research.md for source revisions and conclusions.
+This implementation does not redistribute their source code.

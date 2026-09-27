@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Installation auf Deutsch
+    url: https://github.com/Alexander423/ha-haassohn/blob/main/docs/installation.de.md
+    about: Schrittweise Installation und erste Prüfung.
+  - name: Private security report
+    url: https://github.com/Alexander423/ha-haassohn/security/advisories/new
+    about: Report vulnerabilities privately.

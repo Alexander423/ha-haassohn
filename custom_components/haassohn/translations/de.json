@@ -1,0 +1,153 @@
+{
+  "title": "HAAS+SOHN",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Älteren Pelletofen verbinden",
+        "description": "Lokale Adresse und vierstellige APP-PIN eingeben. Die Einrichtung liest nur den Status: Dieses Protokoll kann die PIN ohne Steuerbefehl nicht sicher prüfen. Eine falsche PIN wird gemeldet, sobald der Ofen einen Befehl ablehnt. Bei der Einrichtung wird keine Einstellung geändert.",
+        "data": {
+          "host": "Hostname oder IP-Adresse",
+          "pin": "APP-PIN"
+        },
+        "data_description": {
+          "host": "Lokaler Hostname oder IP-Adresse, ohne http:// und Port.",
+          "pin": "Vier Ziffern vom Ofendisplay, einschließlich führender Nullen."
+        }
+      },
+      "reconfigure": {
+        "title": "Verbindung ändern",
+        "description": "Neue Adresse und APP-PIN eingeben. Die Seriennummer muss übereinstimmen. Es wird nur der Status gelesen; die PIN wird beim nächsten Steuerbefehl geprüft.",
+        "data": {
+          "host": "Hostname oder IP-Adresse",
+          "pin": "APP-PIN"
+        }
+      },
+      "reauth_confirm": {
+        "title": "APP-PIN ändern",
+        "description": "Der Ofen hat einen Befehl abgelehnt. Die PIN am Ofendisplay prüfen. Dieser lesende Verbindungstest kann sie nicht bestätigen; der nächste Steuerbefehl verwendet die neue PIN.",
+        "data": {
+          "host": "Hostname oder IP-Adresse",
+          "pin": "APP-PIN"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Keine Verbindung zum Ofen möglich.",
+      "invalid_auth": "Der Ofen hat die Anmeldung abgelehnt. APP-PIN prüfen.",
+      "invalid_input": "Gültigen lokalen Host und vierstellige APP-PIN eingeben.",
+      "timeout": "Der Ofen hat nicht rechtzeitig geantwortet.",
+      "unsupported_device": "Keine unterstützte ältere KS01-Steuerung gefunden.",
+      "unknown": "Der Ofen hat eine unerwartete Antwort geliefert."
+    },
+    "abort": {
+      "already_configured": "Dieser Ofen ist bereits eingerichtet.",
+      "wrong_device": "Die Seriennummer stimmt nicht mit dem eingerichteten Ofen überein.",
+      "reconfigure_successful": "Verbindung aktualisiert.",
+      "reauth_successful": "Zugangsdaten aktualisiert."
+    }
+  },
+  "exceptions": {
+    "invalid_auth": {
+      "message": "Der Ofen hat die APP-PIN abgelehnt. In den Integrationseinstellungen aktualisieren."
+    },
+    "cannot_connect": {
+      "message": "Kein gültiger Ofenstatus verfügbar. Die Verbindung wird automatisch erneut versucht."
+    },
+    "command_failed": {
+      "message": "Der Befehl konnte nicht bestätigt werden. Er könnte ausgeführt worden sein. Vor einem erneuten Versuch den Ofenstatus prüfen."
+    },
+    "invalid_value": {
+      "message": "Dieser Wert wird vom Ofen nicht unterstützt."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "is_temp": {
+        "name": "Raumtemperatur"
+      },
+      "sp_temp": {
+        "name": "Solltemperatur"
+      },
+      "mode": {
+        "name": "Ofenzustand"
+      },
+      "ignitions": {
+        "name": "Zündungen"
+      },
+      "on_time": {
+        "name": "Betriebsstunden"
+      },
+      "consumption": {
+        "name": "Pelletverbrauch"
+      },
+      "maintenance_in": {
+        "name": "Pellets bis zur Wartung"
+      },
+      "cleaning_in": {
+        "name": "Zeit bis zur Reinigung"
+      },
+      "tvl_temp": {
+        "name": "Solltemperatur der Wassertasche"
+      },
+      "ht_char": {
+        "name": "Heizkurve"
+      },
+      "zone": {
+        "name": "Betriebszone"
+      },
+      "error": {
+        "name": "Gemeldete Fehlereinträge"
+      },
+      "reported_error": {
+        "name": "Erster gemeldeter Fehlereintrag",
+        "state": {
+          "exhaust_sensor": "Abgastemperaturfühler gestört",
+          "door_open_idle": "Tür im Stillstand geöffnet",
+          "room_sensor": "Raumtemperaturfühler gestört",
+          "room_sensor_short": "Kurzschluss am Raumtemperaturfühler",
+          "exhaust_fan": "Saugzuggebläse gestört",
+          "power_interruption": "Stromunterbrechung",
+          "flame_sensor": "Flammentemperaturfühler gestört",
+          "lower_flame_sensor": "Unterer Flammentemperaturfühler gestört",
+          "wifi_connection": "WLAN-Verbindung gestört",
+          "internet_connection": "Internetverbindung gestört",
+          "cleaning_overdue": "Reinigung überfällig",
+          "maintenance_overdue": "Wartung überfällig",
+          "maintenance_reset": "Wartungszähler zurückgesetzt",
+          "backup_battery": "Pufferbatterie leer",
+          "controller_restart": "Steuerung neu gestartet",
+          "unknown_code": "Unbekannter Code",
+          "no_entries": "Keine gemeldeten Einträge"
+        }
+      }
+    },
+    "binary_sensor": {
+      "prg": {
+        "name": "Heizbetrieb aktiviert"
+      },
+      "room_mode": {
+        "name": "Raummodus"
+      },
+      "eco_mode": {
+        "name": "Eco-Modus"
+      },
+      "wprg": {
+        "name": "Wochenprogramm"
+      },
+      "cleaning_in_due": {
+        "name": "Reinigung fällig"
+      },
+      "maintenance_in_due": {
+        "name": "Wartung fällig"
+      }
+    },
+    "switch": {
+      "eco_mode": {
+        "name": "Eco-Modus"
+      },
+      "wprg": {
+        "name": "Wochenprogramm"
+      }
+    }
+  }
+}

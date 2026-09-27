@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyhaassohn"
+version = "0.1.0"
+description = "Asynchronous local client for legacy HAAS+SOHN pellet stove WLAN modules"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13"
+dependencies = ["aiohttp>=3.11,<4"]
+
+[project.urls]
+Homepage = "https://github.com/Alexander423/ha-haassohn"
+Issues = "https://github.com/Alexander423/ha-haassohn/issues"
+Changelog = "https://github.com/Alexander423/ha-haassohn/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-asyncio>=1", "pytest-cov>=6"]
+dev = ["ruff>=0.12", "mypy>=1.15", "build>=1.2", "pre-commit>=4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyhaassohn"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "--strict-markers"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+extend-exclude = [".research", ".venv*", "custom_components/haassohn/_vendor"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+files = ["src/pyhaassohn"]
+
+[tool.coverage.run]
+branch = true
+source = ["pyhaassohn", "custom_components.haassohn"]
+omit = ["*/_vendor/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 95

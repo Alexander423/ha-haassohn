@@ -1,0 +1,153 @@
+{
+  "title": "HAAS+SOHN",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect your legacy stove",
+        "description": "Enter the local address and four-digit APP PIN. Setup only reads status: this protocol cannot safely verify the PIN without a control command. An incorrect PIN is reported when the stove rejects a command. No setting is changed during setup.",
+        "data": {
+          "host": "Host or IP address",
+          "pin": "APP PIN"
+        },
+        "data_description": {
+          "host": "Local hostname or IP, without http:// or a port.",
+          "pin": "Four digits from the stove display, including leading zeros."
+        }
+      },
+      "reconfigure": {
+        "title": "Update connection",
+        "description": "Enter the new address and APP PIN. The device serial must match. Setup reads status only; the PIN is checked on the next control command.",
+        "data": {
+          "host": "Host or IP address",
+          "pin": "APP PIN"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Update APP PIN",
+        "description": "The stove rejected a command. Check the PIN on the stove display. This read-only connection test cannot validate it; the next command will use the new PIN.",
+        "data": {
+          "host": "Host or IP address",
+          "pin": "APP PIN"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the stove.",
+      "invalid_auth": "The stove rejected authentication. Check the APP PIN.",
+      "invalid_input": "Enter a valid local host and a four-digit APP PIN.",
+      "timeout": "The stove did not respond in time.",
+      "unsupported_device": "No supported legacy KS01 controller was found.",
+      "unknown": "The stove returned an unexpected response."
+    },
+    "abort": {
+      "already_configured": "This stove is already configured.",
+      "wrong_device": "The device serial does not match the configured stove.",
+      "reconfigure_successful": "Connection updated.",
+      "reauth_successful": "Credentials updated."
+    }
+  },
+  "exceptions": {
+    "invalid_auth": {
+      "message": "The stove rejected the APP PIN. Update it in the integration settings."
+    },
+    "cannot_connect": {
+      "message": "Cannot obtain a valid stove status. Connection recovery will be retried automatically."
+    },
+    "command_failed": {
+      "message": "The command could not be confirmed. It may have executed. Check the stove state before retrying."
+    },
+    "invalid_value": {
+      "message": "This value is not supported by the stove."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "is_temp": {
+        "name": "Room temperature"
+      },
+      "sp_temp": {
+        "name": "Target temperature"
+      },
+      "mode": {
+        "name": "Stove state"
+      },
+      "ignitions": {
+        "name": "Ignitions"
+      },
+      "on_time": {
+        "name": "Operating hours"
+      },
+      "consumption": {
+        "name": "Pellet consumption"
+      },
+      "maintenance_in": {
+        "name": "Pellets until maintenance"
+      },
+      "cleaning_in": {
+        "name": "Time until cleaning"
+      },
+      "tvl_temp": {
+        "name": "Water jacket target temperature"
+      },
+      "ht_char": {
+        "name": "Heating curve"
+      },
+      "zone": {
+        "name": "Operating zone"
+      },
+      "error": {
+        "name": "Reported error entries"
+      },
+      "reported_error": {
+        "name": "First reported error entry",
+        "state": {
+          "exhaust_sensor": "Exhaust temperature sensor fault",
+          "door_open_idle": "Door open while idle",
+          "room_sensor": "Room temperature sensor fault",
+          "room_sensor_short": "Room temperature sensor short circuit",
+          "exhaust_fan": "Exhaust fan fault",
+          "power_interruption": "Power interruption",
+          "flame_sensor": "Flame temperature sensor fault",
+          "lower_flame_sensor": "Lower flame temperature sensor fault",
+          "wifi_connection": "Wi-Fi connection fault",
+          "internet_connection": "Internet connection fault",
+          "cleaning_overdue": "Cleaning overdue",
+          "maintenance_overdue": "Maintenance overdue",
+          "maintenance_reset": "Maintenance counter reset",
+          "backup_battery": "Backup battery depleted",
+          "controller_restart": "Controller restarted",
+          "unknown_code": "Unknown code",
+          "no_entries": "No reported entries"
+        }
+      }
+    },
+    "binary_sensor": {
+      "prg": {
+        "name": "Heating enabled"
+      },
+      "room_mode": {
+        "name": "Room mode"
+      },
+      "eco_mode": {
+        "name": "Eco mode"
+      },
+      "wprg": {
+        "name": "Weekly program"
+      },
+      "cleaning_in_due": {
+        "name": "Cleaning due"
+      },
+      "maintenance_in_due": {
+        "name": "Maintenance due"
+      }
+    },
+    "switch": {
+      "eco_mode": {
+        "name": "Eco mode"
+      },
+      "wprg": {
+        "name": "Weekly program"
+      }
+    }
+  }
+}

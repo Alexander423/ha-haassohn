@@ -1,0 +1,32 @@
+name: Bug report / Fehler melden
+description: Report a reproducible integration problem with sanitized information.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include PINs, IP addresses, serials, nonces or raw HTTP captures. Use private security reporting for vulnerabilities."
+  - type: input
+    id: versions
+    attributes:
+      label: Home Assistant and integration versions
+    validations:
+      required: true
+  - type: input
+    id: appliance
+    attributes:
+      label: Stove model and controller firmware
+      description: "APP version alone is not the controller firmware. No serial number."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, expected behavior and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Sanitized diagnostics or relevant error messages
+      description: "Review attachments for personal information before submitting."
