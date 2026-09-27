@@ -22,7 +22,9 @@ def main() -> None:
         issue_tracker=f"https://github.com/{args.repository}/issues",
         codeowners=[f"@{args.codeowner}"],
     )
-    path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    ordered = {key: data[key] for key in ("domain", "name")}
+    ordered.update({key: data[key] for key in sorted(data) if key not in ordered})
+    path.write_text(json.dumps(ordered, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
